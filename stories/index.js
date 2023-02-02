@@ -11,6 +11,7 @@ import DayList from "components/DayList"
 import InterviewerListItem from "components/InterviewerListItem";
 import InterviewerList from "components/InterviewerList";
 import Appointment from "components/Appointment";
+import Header from "components/Appointment/Header";
 
 storiesOf("Button", module)
   .addParameters({
@@ -142,4 +143,5 @@ storiesOf("DayList", module)
           backgrounds: [{ name: "white", value: "#fff", default: true }]
         })
         .add("Appointment", () => <Appointment />)
-        .add("Appointment with Time", () => <Appointment time="12pm" />);
+        .add("Appointment with Time", () => <Appointment time="12pm" />)
+        .add("Header", () => <Header time="12pm" />);
