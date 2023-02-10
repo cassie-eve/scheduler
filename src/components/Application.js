@@ -25,6 +25,7 @@ const appointment = appointments.map((appointment) => {
       id={appointment.id}
       time={appointment.time}
       interview={interview}
+      interviewers={(getInterviewersForDay(state, state.day))}
     />
   );
 });
