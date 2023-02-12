@@ -16,7 +16,7 @@ export default function Application(props) {
 
   function bookInterview(id, interview) {
 
-    axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
+    return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
 
     .then((res) => {
     
@@ -72,6 +72,7 @@ export default function Application(props) {
         interviewers={(getInterviewersForDay(state, state.day))}
         bookInterview={bookInterview}
         cancelInterview={cancelInterview}
+        lastAppointment={false}
       />
     );
   });
@@ -114,7 +115,7 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {appointment}
-        <Appointment key="last" time="5pm" />
+        <Appointment lastAppointment={true} time="5pm"/>
       </section>
     </main>
   );
