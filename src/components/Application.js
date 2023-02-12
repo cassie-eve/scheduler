@@ -41,9 +41,8 @@ export default function Application(props) {
 
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
       .then((res) => { 
-
         const appointment = {
-          ...state.appointments,
+          ...state.appointments[id],
           interview: null
         }
 
