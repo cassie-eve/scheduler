@@ -21,11 +21,24 @@ export default function useApplicationData() {
 
   const setDay = day => setState({ ...state, day });
 
+  function getDayId(day) {
+    const days = {
+      Monday: 0,
+      Tuesday: 1,
+      Wednesday: 2,
+      Thursday: 3,
+      Friday: 4
+    };
+    return days[day]
+  }
+
   function bookInterview(id, interview) {
 
     return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
 
     .then((res) => {
+
+      state.days[getDayId(state.day)].spots-=1
     
       const appointment = {
         ...state.appointments[id],
@@ -48,6 +61,9 @@ export default function useApplicationData() {
 
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
       .then((res) => { 
+
+        state.days[getDayId(state.day)].spots+=1
+
         const appointment = {
           ...state.appointments[id],
           interview: null
