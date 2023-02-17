@@ -21,7 +21,7 @@ export default function useApplicationData() {
 
   const setDay = day => setState({ ...state, day });
 
-  function countSpots(appointments) {
+  function countSpots(id, appointments) {
     let counter = 0;
     const days = state.days;
 
@@ -41,7 +41,6 @@ export default function useApplicationData() {
   }
 
   function bookInterview(id, interview) {
-    console.log(id, interview)
     return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
 
     .then((res) => {
