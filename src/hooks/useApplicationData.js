@@ -21,24 +21,30 @@ export default function useApplicationData() {
 
   const setDay = day => setState({ ...state, day });
 
-  function getDayId(day) {
-    const days = {
-      Monday: 0,
-      Tuesday: 1,
-      Wednesday: 2,
-      Thursday: 3,
-      Friday: 4
-    };
-    return days[day]
+  function countSpots(appointments) {
+    let counter = 0;
+    const days = state.days;
+
+    const index = days.findIndex((day) => { 
+      return day.name === state.day
+    })
+
+    for (const appointmentId of days[index].appointments) {
+      if (appointments[appointmentId].interview === null) {
+        counter++;
+      }
+    }
+    const dayState = [...state.days];
+    dayState[index] = {...dayState[index], spots: counter}
+
+    return dayState;
   }
 
   function bookInterview(id, interview) {
-
+    console.log(id, interview)
     return axios.put(`http://localhost:8001/api/appointments/${id}`, {interview})
 
     .then((res) => {
-
-      state.days[getDayId(state.day)].spots-=1
     
       const appointment = {
         ...state.appointments[id],
@@ -52,7 +58,8 @@ export default function useApplicationData() {
 
       setState({
         ...state,
-        appointments
+        appointments,
+        days: countSpots(id, appointments)
       });
     })
   }
@@ -61,8 +68,6 @@ export default function useApplicationData() {
 
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
       .then((res) => { 
-
-        state.days[getDayId(state.day)].spots+=1
 
         const appointment = {
           ...state.appointments[id],
@@ -76,7 +81,8 @@ export default function useApplicationData() {
 
         setState({
           ...state,
-          appointments
+          appointments,
+          days: countSpots(id, appointments)
         })
     });
   }
