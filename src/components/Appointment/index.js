@@ -55,7 +55,7 @@ export default function Appointment(props) {
   };
 
   return (
-    <Fragment>
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time}></Header>
       {mode === EMPTY && props.lastAppointment === false && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && props.interview && (
@@ -109,6 +109,6 @@ export default function Appointment(props) {
           onClose={() => transition(SHOW)}
         />
       )}
-    </Fragment>
+    </article>
   )
 }
