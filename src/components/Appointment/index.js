@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React from "react";
 
 import "components/Appointment/styles.scss";
 import Header from "./Header";
@@ -73,6 +73,7 @@ export default function Appointment(props) {
           onSave={(name, interviewer) => {
             save(name, interviewer);
           }}
+
         />
       )}
       {mode === SAVING && <Status message={`Saving`} />}
@@ -89,7 +90,7 @@ export default function Appointment(props) {
         />
       )}
       {mode === EDIT && (
-        <Form
+        <Form 
           student={props.interview.student}
           interviewer={props.interview.interviewer.id}
           interviewers={props.interviewers}
