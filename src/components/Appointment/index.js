@@ -85,7 +85,7 @@ export default function Appointment(props) {
           onConfirm={(name, interviewer) => {
             deleteInterview(name, interviewer);
           }}
-          message="Are you sure you want like to delete this?"
+          message="Are you sure you want to delete this?"
         />
       )}
       {mode === EDIT && (
