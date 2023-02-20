@@ -1,5 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": "http://localhost:8000"
+    "baseUrl": "src"
   }
 }
